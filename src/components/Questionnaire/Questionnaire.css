@@ -1,0 +1,216 @@
+/* 页面整体样式 */
+.Questionnaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Didot', serif; /* 使用 Didot 字体 */
+  background: #ffffff; /* 白色背景 */
+  color: #000000; /* 黑色文字 */
+}
+
+/* 标题样式 */
+.title {
+  font-size: 36px; /* 调整标题大小以适配小屏幕 */
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000000; /* 纯黑标题 */
+  margin-bottom: 20px;
+  letter-spacing: 1px; /* 微小间距 */
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 16px; /* 调整副标题大小 */
+  color: #555555; /* 辅助灰色文字 */
+  margin-bottom: 30px;
+  text-align: center;
+  line-height: 1.6; /* 提升可读性 */
+}
+
+/* 卡片容器样式 */
+.container {
+  width: 100%;
+  max-width: 480px; /* 缩小卡片宽度以适配小屏幕 */
+  background: #f8f8f8; /* 浅灰色背景 */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 柔和阴影 */
+  padding: 20px 30px; /* 减少内边距 */
+  text-align: left;
+}
+
+/* 表单分区样式 */
+.form-section {
+  margin-bottom: 20px; /* 减小分区间距 */
+}
+
+.form-label {
+  font-size: 18px; /* 调整字体大小 */
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+  color: #000000; /* 黑色文字 */
+}
+
+.age-input {
+  width: 100%;
+  padding: 10px; /* 减少输入框内边距 */
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background: #ffffff; /* 白色输入框背景 */
+  color: #333333;
+  outline: none;
+  margin-top: 10px;
+  font-family: 'Didot', serif; /* Didot 字体 */
+}
+
+.age-input:focus {
+  border-color: #000000; /* 聚焦时边框变黑 */
+}
+
+/* 选项按钮样式 */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* 减小按钮间距 */
+}
+
+.option-button {
+  flex: 1 1 calc(50% - 10px); /* 宽度适配手机屏幕 */
+  padding: 10px; /* 减小按钮内边距 */
+  font-size: 14px; /* 调整按钮字体大小 */
+  text-align: center;
+  border: 2px solid #000000;
+  border-radius: 20px;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Didot', serif; /* Didot 字体 */
+}
+
+.option-button.selected {
+  background: #000000; /* 选中时黑底白字 */
+  color: #ffffff;
+}
+
+.option-button:hover {
+  background: #f0f0f0; /* 悬停时浅灰背景 */
+}
+
+/* 下一步按钮样式 */
+.next-button {
+  width: 100%;
+  padding: 12px; /* 减小按钮内边距 */
+  font-size: 16px; /* 调整按钮字体大小 */
+  text-transform: uppercase;
+  color: #000000;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  font-family: 'Didot', serif; /* Didot 字体 */
+}
+
+.next-button:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-3px); /* 悬停时微微上移 */
+}
+
+/* 响应式布局：适配小屏幕 */
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 32px; /* 减小标题大小 */
+  }
+
+  .subtitle {
+    font-size: 14px; /* 减小副标题大小 */
+  }
+
+  .container {
+    max-width: 360px; /* 更窄的卡片宽度 */
+    padding: 20px; /* 减少内边距 */
+  }
+
+  .option-button {
+    font-size: 12px; /* 减小按钮字体 */
+    padding: 8px; /* 减小按钮内边距 */
+  }
+
+  .next-button {
+    font-size: 14px; /* 调整按钮字体大小 */
+    padding: 10px; /* 减小按钮内边距 */
+  }
+}
+
+/* Name 和 Focus 输入框样式 */
+.name-input,
+.focus-input {
+  width: 100%;
+  padding: 10px; /* 输入框内边距 */
+  font-size: 16px; /* 字体大小 */
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background: #ffffff; /* 白色背景 */
+  color: #333333;
+  outline: none;
+  margin-top: 10px;
+  font-family: 'Didot', serif; /* 使用 Didot 字体 */
+}
+
+.name-input:focus,
+.focus-input:focus {
+  border-color: #000000; /* 聚焦时边框变黑 */
+}
+
+/* Gender 滑动选择器容器样式 */
+.gender-slider {
+  display: flex;
+  justify-content: space-between; /* 两端对齐 */
+  gap: 10px; /* 按钮间距 */
+  margin-top: 10px; /* 上边距 */
+}
+
+/* Gender 按钮样式 */
+.gender-button {
+  flex: 1; /* 平均分配宽度 */
+  padding: 10px;
+  font-size: 16px; /* 字体大小 */
+  text-align: center;
+  border: 2px solid #000000;
+  border-radius: 20px;
+  background: #ffffff; /* 默认白色背景 */
+  color: #000000; /* 默认黑色文字 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Didot', serif; /* 使用 Didot 字体 */
+}
+
+.gender-button.selected {
+  background: #000000; /* 选中时黑底白字 */
+  color: #ffffff;
+}
+
+.gender-button:hover {
+  background: #f0f0f0; /* 悬停时浅灰背景 */
+}
+
+/* 响应式布局：适配小屏幕 */
+@media screen and (max-width: 768px) {
+  .name-input,
+  .focus-input {
+    font-size: 14px; /* 减小输入框字体大小 */
+    padding: 8px; /* 减小输入框内边距 */
+  }
+
+  .gender-button {
+    font-size: 14px; /* 减小按钮字体大小 */
+    padding: 8px; /* 减小按钮内边距 */
+  }
+}

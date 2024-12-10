@@ -1,0 +1,75 @@
+/* Overall Layout */
+.LoadingPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #ffffff; /* Clean white background */
+    font-family: 'Didot', serif; /* Elegant serif font */
+    color: #1a1a1a; /* Black text for contrast */
+    text-align: center;
+  }
+  
+  /* Loading Container */
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Analyzing Message */
+  .analyzing-message {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    letter-spacing: 2px; /* Elegant spacing */
+  }
+  
+  /* "Did You Know?" Text */
+  .did-you-know {
+    font-size: 18px;
+    font-style: italic;
+    color: #555555;
+  }
+  
+  /* Dynamic Text (Fact Animation) */
+  .dynamic-text {
+    font-size: 16px;
+    color: #333333;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Spinner Animation */
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e0e0e0;
+    border-top: 4px solid #1a1a1a;
+    border-radius: 50%;
+    margin-top: 20px;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  /* Keyframes for Spinner */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Keyframes for Text Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
