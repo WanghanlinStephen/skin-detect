@@ -43,6 +43,7 @@
   display: none; /* 隐藏默认文件输入框 */
 }
 
+.capture-btn,
 .file-button,
 .camera-button {
   display: inline-block;
@@ -55,8 +56,8 @@
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Lato', sans-serif; /* 现代无衬线字体 */
   margin-bottom: 15px;
+  font-family: 'Didot', serif
 }
 
 .file-button:hover,
@@ -93,11 +94,36 @@
   border-radius: 30px;
   cursor: pointer;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-  font-family: 'Lato', sans-serif; /* 无衬线字体 */
   transition: all 0.3s ease;
+  font-family: 'Didot', serif
 }
 
 .submit-btn:hover {
   background: linear-gradient(90deg, #444444, #000000); /* 渐变反转 */
   transform: translateY(-3px); /* 上移效果 */
+}
+
+/* 错误提示样式 */
+.error {
+  color: red;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* 摄像头预览容器 */
+.camera-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 视频样式 */
+.video {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #000;
 }

@@ -1,87 +1,101 @@
 /* 页面整体样式 */
+body, html {
+  font-family: 'Didot', serif; /* 使用 Didot 字体 */
+}
+
+body.questionnaire {
+  overflow: auto; /* 允许滚动 */
+  height: auto; /* 动态适应内容高度 */
+  margin: 0;
+  padding: 0;
+}
+
 .Questionnaire {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start; /* 从顶部开始排列内容 */
   padding: 40px 20px;
-  font-family: 'Didot', serif; /* 使用 Didot 字体 */
   background: #ffffff; /* 白色背景 */
   color: #000000; /* 黑色文字 */
+  min-height: 100vh; /* 确保至少填满视口高度 */
 }
 
 /* 标题样式 */
 .title {
-  font-size: 36px; /* 调整标题大小以适配小屏幕 */
+  font-size: 36px; /* 调整标题大小 */
   font-weight: bold;
   text-transform: uppercase;
-  color: #000000; /* 纯黑标题 */
-  margin-bottom: 20px;
-  letter-spacing: 1px; /* 微小间距 */
+  color: #000000;
+  margin-bottom: 40px; /* 下移标题间距 */
+  letter-spacing: 1px;
   text-align: center;
 }
 
 .subtitle {
-  font-size: 16px; /* 调整副标题大小 */
-  color: #555555; /* 辅助灰色文字 */
-  margin-bottom: 30px;
+  font-size: 16px;
+  color: #555555;
+  margin-bottom: 50px; /* 调整间距 */
   text-align: center;
-  line-height: 1.6; /* 提升可读性 */
+  line-height: 1.6; /* 提高可读性 */
 }
 
 /* 卡片容器样式 */
 .container {
   width: 100%;
-  max-width: 480px; /* 缩小卡片宽度以适配小屏幕 */
-  background: #f8f8f8; /* 浅灰色背景 */
+  max-width: 480px; /* 限制卡片宽度 */
+  background: #f8f8f8;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 柔和阴影 */
-  padding: 20px 30px; /* 减少内边距 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
   text-align: left;
 }
 
 /* 表单分区样式 */
 .form-section {
-  margin-bottom: 20px; /* 减小分区间距 */
+  margin-bottom: 20px; /* 分区间距 */
 }
 
 .form-label {
-  font-size: 18px; /* 调整字体大小 */
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
   display: block;
-  color: #000000; /* 黑色文字 */
+  color: #000000;
 }
 
-.age-input {
+.name-input,
+.age-input,
+.focus-input {
   width: 100%;
-  padding: 10px; /* 减少输入框内边距 */
+  padding: 10px;
   font-size: 16px;
   border: 1px solid #cccccc;
   border-radius: 8px;
-  background: #ffffff; /* 白色输入框背景 */
+  background: #ffffff;
   color: #333333;
   outline: none;
   margin-top: 10px;
-  font-family: 'Didot', serif; /* Didot 字体 */
+  font-family: 'Didot', serif;
 }
 
-.age-input:focus {
-  border-color: #000000; /* 聚焦时边框变黑 */
+.name-input:focus,
+.age-input:focus,
+.focus-input:focus {
+  border-color: #000000; /* 聚焦时变黑 */
 }
 
 /* 选项按钮样式 */
 .options {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* 减小按钮间距 */
+  gap: 10px; /* 按钮间距 */
 }
 
 .option-button {
-  flex: 1 1 calc(50% - 10px); /* 宽度适配手机屏幕 */
-  padding: 10px; /* 减小按钮内边距 */
-  font-size: 14px; /* 调整按钮字体大小 */
+  flex: 1 1 calc(50% - 10px); /* 按钮宽度适配 */
+  padding: 10px;
+  font-size: 14px;
   text-align: center;
   border: 2px solid #000000;
   border-radius: 20px;
@@ -89,11 +103,11 @@
   color: #000000;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Didot', serif; /* Didot 字体 */
+  font-family: 'Didot', serif;
 }
 
 .option-button.selected {
-  background: #000000; /* 选中时黑底白字 */
+  background: #000000;
   color: #ffffff;
 }
 
@@ -104,8 +118,8 @@
 /* 下一步按钮样式 */
 .next-button {
   width: 100%;
-  padding: 12px; /* 减小按钮内边距 */
-  font-size: 16px; /* 调整按钮字体大小 */
+  padding: 12px;
+  font-size: 16px;
   text-transform: uppercase;
   color: #000000;
   background: #ffffff;
@@ -114,103 +128,84 @@
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 20px;
-  font-family: 'Didot', serif; /* Didot 字体 */
+  font-family: 'Didot', serif;
 }
 
 .next-button:hover {
   background: #000000;
   color: #ffffff;
-  transform: translateY(-3px); /* 悬停时微微上移 */
-}
-
-/* 响应式布局：适配小屏幕 */
-@media screen and (max-width: 768px) {
-  .title {
-    font-size: 32px; /* 减小标题大小 */
-  }
-
-  .subtitle {
-    font-size: 14px; /* 减小副标题大小 */
-  }
-
-  .container {
-    max-width: 360px; /* 更窄的卡片宽度 */
-    padding: 20px; /* 减少内边距 */
-  }
-
-  .option-button {
-    font-size: 12px; /* 减小按钮字体 */
-    padding: 8px; /* 减小按钮内边距 */
-  }
-
-  .next-button {
-    font-size: 14px; /* 调整按钮字体大小 */
-    padding: 10px; /* 减小按钮内边距 */
-  }
+  transform: translateY(-3px);
 }
 
 /* Name 和 Focus 输入框样式 */
 .name-input,
 .focus-input {
   width: 100%;
-  padding: 10px; /* 输入框内边距 */
-  font-size: 16px; /* 字体大小 */
+  padding: 10px;
+  font-size: 16px;
   border: 1px solid #cccccc;
   border-radius: 8px;
-  background: #ffffff; /* 白色背景 */
+  background: #ffffff;
   color: #333333;
   outline: none;
   margin-top: 10px;
-  font-family: 'Didot', serif; /* 使用 Didot 字体 */
 }
 
 .name-input:focus,
 .focus-input:focus {
-  border-color: #000000; /* 聚焦时边框变黑 */
+  border-color: #000000;
 }
 
-/* Gender 滑动选择器容器样式 */
+/* Gender 滑动选择器样式 */
 .gender-slider {
   display: flex;
-  justify-content: space-between; /* 两端对齐 */
-  gap: 10px; /* 按钮间距 */
-  margin-top: 10px; /* 上边距 */
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-/* Gender 按钮样式 */
 .gender-button {
-  flex: 1; /* 平均分配宽度 */
+  flex: 1;
   padding: 10px;
-  font-size: 16px; /* 字体大小 */
+  font-size: 16px;
   text-align: center;
   border: 2px solid #000000;
   border-radius: 20px;
-  background: #ffffff; /* 默认白色背景 */
-  color: #000000; /* 默认黑色文字 */
+  background: #ffffff;
+  color: #000000;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Didot', serif; /* 使用 Didot 字体 */
+  font-family: 'Didot', serif
 }
 
 .gender-button.selected {
-  background: #000000; /* 选中时黑底白字 */
+  background: #000000;
   color: #ffffff;
 }
 
 .gender-button:hover {
-  background: #f0f0f0; /* 悬停时浅灰背景 */
+  background: #f0f0f0;
 }
 
-/* 响应式布局：适配小屏幕 */
+/* 响应式布局 */
 @media screen and (max-width: 768px) {
-  .name-input,
-  .focus-input {
-    font-size: 14px; /* 减小输入框字体大小 */
-    padding: 8px; /* 减小输入框内边距 */
+  .title {
+    font-size: 32px;
   }
 
-  .gender-button {
-    font-size: 14px; /* 减小按钮字体大小 */
-    padding: 8px; /* 减小按钮内边距 */
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 360px;
+  }
+
+  .option-button {
+    font-size: 12px;
+  }
+
+  .next-button {
+    font-size: 14px;
   }
 }

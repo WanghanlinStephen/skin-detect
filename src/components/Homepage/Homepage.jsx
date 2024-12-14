@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useEffect }from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Homepage.css';
-import backgroundImage from '../../assets/background.jpg'; // Import the image
 
 function Homepage() {
   const navigate = useNavigate(); // Create navigate function
+
+  useEffect(() => {
+    document.body.classList.add('homepage'); // 添加类名
+    return () => {
+      document.body.classList.remove('homepage'); // 移除类名
+    };
+  }, []);
 
   return (
     <div className="Homepage">
       <div
         className="background-image"
         style={{
-          backgroundImage: `url(${backgroundImage})`, // Dynamically set background image
+          backgroundImage: `url(https://skin-doctor-frontend.s3.us-east-2.amazonaws.com/images/40%25.jpg)`,
         }}
       ></div>
 
@@ -23,7 +29,7 @@ function Homepage() {
       <div className="content">
         <p className="description">
           Understand your skin like never before.<br />
-          Powered by AI. Trusted by dermatologists.
+          Powered by LLMs. Trusted by dermatologists.
         </p>
         <div className="features">
           <div className="feature">
