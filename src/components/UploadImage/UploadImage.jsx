@@ -18,48 +18,27 @@ function UploadImage() {
     const file = event.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
-      console.log('File uploaded successfully:', file);
     }
   };
 
   // 激活摄像头
   const handleTakePhoto = async () => {
     try {
-      console.log('Attempting to access camera...');
-  
       if (streamRef.current) {
-        console.log('Stopping existing stream...');
         streamRef.current.getTracks().forEach((track) => track.stop());
         streamRef.current = null;
       }
-  
+
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      console.log('Camera access granted. Stream:', stream);
-  
       streamRef.current = stream;
-      console.log('Stream successfully stored.');
-  
-      setIsCameraActive(true); // 更新状态，触发渲染
-  
-      // 延迟绑定流到 video
+      setIsCameraActive(true);
+
       setTimeout(() => {
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
-          console.log('Stream bound to video element.');
-          videoRef.current.play().then(() => {
-            console.log('Video playback started.');
-            console.log(
-              'Video Dimensions: ',
-              videoRef.current.videoWidth,
-              videoRef.current.videoHeight
-            );
-          }).catch((error) => {
-            console.error('Failed to start video playback:', error);
-          });
-        } else {
-          console.error('Video element not found.');
+          videoRef.current.play();
         }
-      }, 100); // 等待 100ms
+      }, 100);
     } catch (err) {
       console.error('Failed to access the camera:', err);
       setError('Failed to access the camera. Please check permissions or device availability.');
@@ -68,46 +47,23 @@ function UploadImage() {
 
   // 捕获照片
   const handleCapture = () => {
-    try {
-      console.log('Attempting to capture photo...');
-      if (videoRef.current && canvasRef.current) {
-        const video = videoRef.current;
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
+    if (videoRef.current && canvasRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      const context = canvas.getContext('2d');
 
-        console.log(
-          'Capturing frame. Video Dimensions:',
-          video.videoWidth,
-          video.videoHeight
-        );
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        // 设置 Canvas 大小与视频一致
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+      const photoData = canvas.toDataURL('image/png');
+      setImage(photoData);
 
-        // 绘制视频帧到 Canvas
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        // 保存图片数据
-        const photoData = canvas.toDataURL('image/png');
-        setImage(photoData); // 保存捕获的图片
-        console.log('Photo captured successfully. Data URL:', photoData);
-
-        // 停止摄像头
-        if (streamRef.current) {
-          console.log('Stopping camera stream...');
-          streamRef.current.getTracks().forEach((track) => track.stop());
-          streamRef.current = null;
-        }
-
-        setIsCameraActive(false); // 更新摄像头状态
-      } else {
-        console.error('Video or canvas element not found.');
-        setError('Video or canvas element not found.');
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
       }
-    } catch (err) {
-      console.error('Failed to capture image:', err);
-      setError('Failed to capture image. Please try again.');
+      setIsCameraActive(false);
     }
   };
 
@@ -191,7 +147,6 @@ function UploadImage() {
   // 组件卸载时释放摄像头流
   useEffect(() => {
     return () => {
-      console.log('Cleaning up camera resources...');
       if (streamRef.current) {
         streamRef.current.getTracks().forEach((track) => track.stop());
       }
@@ -223,6 +178,14 @@ function UploadImage() {
         {isCameraActive && (
           <div className="camera-preview">
             <video ref={videoRef} className="video" autoPlay playsInline />
+            
+            {/* 矢量图覆盖 */}
+            <img
+              src="https://skin-doctor-frontend.s3.us-east-2.amazonaws.com/images/head.svg"
+              alt="Head Overlay"
+              className="head-overlay"
+            />
+
             <button onClick={handleCapture} className="capture-btn">
               Capture Photo
             </button>
@@ -230,7 +193,6 @@ function UploadImage() {
         )}
 
         {image && <img src={image} alt="Captured Preview" className="preview" />}
-
         <button onClick={handleSubmit} className="submit-btn">
           Submit
         </button>

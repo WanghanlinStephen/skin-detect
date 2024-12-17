@@ -93,12 +93,12 @@ body.questionnaire {
 }
 
 .option-button {
-  flex: 1 1 calc(50% - 10px); /* 按钮宽度适配 */
-  padding: 10px;
-  font-size: 14px;
+  flex: 1 1 calc(50% - 10px);
+  padding: 12px;
+  font-size: 16px;
   text-align: center;
   border: 2px solid #000000;
-  border-radius: 20px;
+  border-radius: 20px; /* 保持按钮圆角 */
   background: #ffffff;
   color: #000000;
   cursor: pointer;
@@ -112,8 +112,16 @@ body.questionnaire {
 }
 
 .option-button:hover {
-  background: #f0f0f0; /* 悬停时浅灰背景 */
+  background: #f0f0f0;
 }
+
+.option-button:active,
+.option-button:focus {
+  background: #000000;
+  color: #ffffff;
+  outline: none;
+}
+
 
 /* 下一步按钮样式 */
 .next-button {

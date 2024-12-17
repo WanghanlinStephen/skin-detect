@@ -6,12 +6,19 @@ function ResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 从 location.state 获取分析数据
   const { analyses } = location.state || {};
-  const [selectedAnalysis, setSelectedAnalysis] = useState(analyses?.[0]?.name || ''); // 默认选中第一个分析项
-  const [scrollIndex, setScrollIndex] = useState(0); // 产品滑动起始索引
+  const [selectedAnalysis, setSelectedAnalysis] = useState(analyses?.[0]?.name || '');
+  const [scrollIndex, setScrollIndex] = useState(0);
 
-  // 根据选中项获取数据
+  // 爆款产品推荐
+  const featuredProducts = [
+    {
+      image: 'https://8c3412d76225d04d7baa-be98b6ea17920953fb931282eff9a681.images.lovelyskin.com/450xafz3_202407031354377327.jpg', // 替换为实际图片链接
+      coupon: 'TS20%OFF',
+      description: 'Exclusive Discount on Best Seller!',
+    }
+  ];
+
   const selectedData = analyses?.find((analysis) => analysis.name === selectedAnalysis);
 
   const handleScroll = (direction) => {
@@ -34,7 +41,6 @@ function ResultPage() {
 
   return (
     <div className="ResultPage">
-      {/* 图片和分析按钮 */}
       <div className="main-content">
         <div
           className="image-container"
@@ -48,12 +54,11 @@ function ResultPage() {
           {analyses.map((analysis) => (
             <button
               key={analysis.name}
-              className={`circle-button ${
-                analysis.name === selectedAnalysis ? 'selected-button' : ''
-              }`}
+              className={`circle-button ${analysis.name === selectedAnalysis ? 'selected-button' : ''
+                }`}
               onClick={() => {
                 setSelectedAnalysis(analysis.name);
-                setScrollIndex(0); // 切换分析项时重置滚动索引
+                setScrollIndex(0);
               }}
             >
               {analysis.name}
@@ -62,20 +67,36 @@ function ResultPage() {
         </div>
       </div>
 
-      {/* 上下排列的 Advice 和 Product */}
+      {/* 爆款产品推荐 */}
+
+
+      {/* Advice 和 Product 模块 */}
       <div className="content-container">
-        {/* Advice Section */}
         <div className="advice-section">
           <h2>Advice</h2>
           <p>{selectedData.advice}</p>
         </div>
 
-        {/* Product Section */}
+        <div className="featured-products">
+          <h2>Recommended Products</h2>
+          <div className="featured-container">
+            {featuredProducts.map((product, index) => (
+              <div key={index} className="featured-box">
+                <img src={product.image} alt="Featured Product" className="featured-image" />
+                <div className="featured-info">
+                  <p className="coupon">{product.coupon}</p>
+                  <p className="description">{product.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
         <div className="product-section">
           <h2>Products</h2>
           {selectedData.product.length > 0 ? (
             <div className="product-slider-container">
-              {/* Left Arrow */}
               <button
                 className="slider-button left"
                 onClick={() => handleScroll(-1)}
@@ -84,22 +105,15 @@ function ResultPage() {
                 ‹
               </button>
 
-              {/* Product Slider */}
               <div className="product-slider">
                 {selectedData.product.slice(scrollIndex, scrollIndex + 3).map((item, index) => (
-                  <div
-                    key={index}
-                    className="product-box"
-                    onMouseEnter={(e) => (e.target.style.transform = 'scale(1.05)')}
-                    onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
-                  >
+                  <div key={index} className="product-box">
                     <img src={item.image} alt={item.description} className="product-image" />
                     <p className="product-description">{item.description}</p>
                   </div>
                 ))}
               </div>
 
-              {/* Right Arrow */}
               <button
                 className="slider-button right"
                 onClick={() => handleScroll(1)}

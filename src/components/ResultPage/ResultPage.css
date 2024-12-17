@@ -190,3 +190,58 @@
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
+
+/* 推荐产品模块 */
+/* 推荐产品模块 */
+.featured-products {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.featured-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.featured-box {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.featured-image {
+  width: 120px; /* 固定图片大小 */
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-right: 20px; /* 图片与文案的间距 */
+}
+
+.featured-info {
+  flex: 1; /* 占满剩余空间 */
+  text-align: left; /* 文案左对齐 */
+}
+
+.featured-info .coupon {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e74c3c; /* 红色优惠券代码 */
+  margin-bottom: 10px;
+}
+
+.featured-info .description {
+  font-size: 14px;
+  color: #555555;
+}

@@ -112,18 +112,35 @@
 
 /* 摄像头预览容器 */
 .camera-preview {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 20px; */
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px; /* 限制预览宽度 */
 }
 
 /* 视频样式 */
 .video {
-  width: 100%;
+  /* width: 100%;
   max-width: 400px;
   height: auto;
   border: 2px solid #000;
   border-radius: 10px;
-  background: #000;
+  background: #000; */
+  width: 100%;
+  border: 2px solid #000;
+  border-radius: 10px;
+}
+
+.head-overlay {
+  position: absolute;
+  top: -10%;
+  left: 5%;
+  width: 90%; /* 与视频等宽 */
+  height: 90%; /* 与视频等高 */
+  pointer-events: none; /* 允许鼠标事件穿透 */
+  opacity: 0.8; /* 轻微透明 */
 }
