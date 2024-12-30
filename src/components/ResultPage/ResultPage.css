@@ -245,3 +245,114 @@
   font-size: 14px;
   color: #555555;
 }
+
+.analysis-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* 水平方向居中 */
+  align-items: center; /* 垂直方向居中 */
+  width: 100%; /* 确保占满宽度 */
+  margin-bottom: 20px; /* 给图片和按钮之间留出间距 */
+}
+
+.result-image {
+  max-width: 100%; /* 防止图片超出容器宽度 */
+  max-height: 400px; /* 设置一个合理的最大高度 */
+  object-fit: contain; /* 确保图片不变形 */
+}
+
+
+.featured-product {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.featured-box {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.featured-box:hover {
+  transform: scale(1.05);
+}
+
+.featured-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.featured-info {
+  text-align: center;
+}
+
+.coupon {
+  font-weight: bold;
+  color: #f00;
+}
+
+
+.featured-product {
+  margin-bottom: 30px;
+}
+
+.featured-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.featured-box:hover {
+  transform: scale(1.05);
+}
+
+.featured-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.featured-image {
+  max-width: 150px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.featured-description {
+  flex-grow: 1;
+}
+
+.coupon {
+  font-weight: bold;
+  color: #f00;
+  margin-bottom: 10px;
+}
+
+.product-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #666;
+}

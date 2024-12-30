@@ -7,28 +7,25 @@ function ResultPage() {
   const navigate = useNavigate();
 
   const { analyses } = location.state || {};
-  const [selectedAnalysis, setSelectedAnalysis] = useState(analyses?.[0]?.name || '');
+
+  const skinScores = analyses.skin.Scores || {};
+  const products = analyses.products || [];
+  const coupon = analyses.promo_code || "XMASSALE2024";
+  const [selectedAnalysis, setSelectedAnalysis] = useState(Object.keys(skinScores)[0] || '');
   const [scrollIndex, setScrollIndex] = useState(0);
 
-  // 爆款产品推荐
-  const featuredProducts = [
-    {
-      image: 'https://8c3412d76225d04d7baa-be98b6ea17920953fb931282eff9a681.images.lovelyskin.com/450xafz3_202407031354377327.jpg', // 替换为实际图片链接
-      coupon: 'TS20%OFF',
-      description: 'Exclusive Discount on Best Seller!',
-    }
-  ];
+  const selectedData = skinScores[selectedAnalysis] || {};
 
-  const selectedData = analyses?.find((analysis) => analysis.name === selectedAnalysis);
+  const featuredProduct = products[0]; // 默认选择第一款作为主要推荐产品
 
   const handleScroll = (direction) => {
     const newIndex = scrollIndex + direction;
-    if (selectedData && newIndex >= 0 && newIndex <= selectedData.product.length - 3) {
+    if (newIndex >= 0 && newIndex <= products.length - 4) {
       setScrollIndex(newIndex);
     }
   };
 
-  if (!analyses || analyses.length === 0) {
+  if (!Object.keys(skinScores).length) {
     return (
       <div className="ResultPage">
         <h1>No Analysis Data</h1>
@@ -41,90 +38,100 @@ function ResultPage() {
 
   return (
     <div className="ResultPage">
-      <div className="main-content">
-        <div
-          className="image-container"
-          onMouseEnter={(e) => (e.target.style.transform = 'scale(1.05)')}
-          onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
-        >
-          <img src={selectedData.image} alt={selectedAnalysis} className="result-image" />
+      {/* Skin Analysis Section */}
+      <div className="analysis-section">
+        <div className="image-container">
+          <img
+            src={`data:image/jpeg;base64,${selectedData.img || ''}`}
+            alt={selectedAnalysis}
+            className="result-image"
+          />
         </div>
-
         <div className="button-group">
-          {analyses.map((analysis) => (
+          {Object.keys(skinScores).map((key) => (
             <button
-              key={analysis.name}
-              className={`circle-button ${analysis.name === selectedAnalysis ? 'selected-button' : ''
-                }`}
-              onClick={() => {
-                setSelectedAnalysis(analysis.name);
-                setScrollIndex(0);
-              }}
+              key={key}
+              className={`circle-button ${key === selectedAnalysis ? 'selected-button' : ''}`}
+              onClick={() => setSelectedAnalysis(key)}
             >
-              {analysis.name}
+              {key}
             </button>
           ))}
         </div>
-      </div>
 
-      {/* 爆款产品推荐 */}
-
-
-      {/* Advice 和 Product 模块 */}
-      <div className="content-container">
+        {/* Advice Section */}
         <div className="advice-section">
           <h2>Advice</h2>
-          <p>{selectedData.advice}</p>
+          <p>{selectedData.Comment || 'No advice available.'}</p>
         </div>
+      </div>
 
-        <div className="featured-products">
-          <h2>Recommended Products</h2>
-          <div className="featured-container">
-            {featuredProducts.map((product, index) => (
-              <div key={index} className="featured-box">
-                <img src={product.image} alt="Featured Product" className="featured-image" />
-                <div className="featured-info">
-                  <p className="coupon">{product.coupon}</p>
-                  <p className="description">{product.description}</p>
-                </div>
+      {/* Featured Product Section */}
+      <div className="featured-product">
+        <h2>Featured Product</h2>
+        {featuredProduct && (
+          <div
+            className="featured-box"
+            onClick={() => window.open(featuredProduct.product_url, '_blank')}
+          >
+            <div className="featured-content">
+              {/* 左侧图片 */}
+              <img
+                src={featuredProduct.image_src}
+                alt={featuredProduct.title}
+                className="featured-image"
+              />
+              {/* 右侧描述 */}
+              <div className="featured-description">
+                <p className="coupon">25% Off - Coupon: {coupon}</p>
+                <p className="product-title">{featuredProduct.title}</p>
+                <p className="product-price">${featuredProduct.var_price}</p>
+                <p className="product-description">
+                  Hydrating and anti-aging formula, perfect for reducing wrinkles and fine lines. 
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Products Section */}
+      <div className="products-section">
+        <h2>Products</h2>
+        <div className="product-slider-container">
+          <button
+            className="slider-button left"
+            onClick={() => handleScroll(-1)}
+            disabled={scrollIndex === 0}
+          >
+            ‹
+          </button>
+
+          <div className="product-slider">
+            {products.slice(1).slice(scrollIndex, scrollIndex + 3).map((product, index) => (
+              <div
+                key={index}
+                className="product-box"
+                onClick={() => window.open(product.product_url, '_blank')}
+              >
+                <img
+                  src={product.image_src}
+                  alt={product.title}
+                  className="product-image"
+                />
+                <p className="product-title">{product.title}</p>
+                <p className="product-price">${product.var_price}</p>
               </div>
             ))}
           </div>
-        </div>
 
-
-        <div className="product-section">
-          <h2>Products</h2>
-          {selectedData.product.length > 0 ? (
-            <div className="product-slider-container">
-              <button
-                className="slider-button left"
-                onClick={() => handleScroll(-1)}
-                disabled={scrollIndex === 0}
-              >
-                ‹
-              </button>
-
-              <div className="product-slider">
-                {selectedData.product.slice(scrollIndex, scrollIndex + 3).map((item, index) => (
-                  <div key={index} className="product-box">
-                    <img src={item.image} alt={item.description} className="product-image" />
-                    <p className="product-description">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                className="slider-button right"
-                onClick={() => handleScroll(1)}
-                disabled={scrollIndex === selectedData.product.length - 3}
-              >
-                ›
-              </button>
-            </div>
-          ) : (
-            <p>No products available for this analysis.</p>
-          )}
+          <button
+            className="slider-button right"
+            onClick={() => handleScroll(1)}
+            disabled={scrollIndex >= products.length - 4}
+          >
+            ›
+          </button>
         </div>
       </div>
     </div>
