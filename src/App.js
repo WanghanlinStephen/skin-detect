@@ -5,6 +5,7 @@ import Homepage from './components/Homepage/Homepage.jsx';
 import UploadImage from './components/UploadImage/UploadImage.jsx';
 import ResultPage from './components/ResultPage/ResultPage.jsx';
 import Questionnaire from './components/Questionnaire/Questionnaire.jsx';
+import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoadingPage from './components/LoadingPage/LoadingPage.jsx';
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/result" element={<ResultPage />} />
           <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/loading" element={<LoadingPage/>} />
+          <Route path="/error" element={<ErrorPage/>} />
         </Routes>
       </Router>
     </div>

@@ -137,10 +137,10 @@
 
 .head-overlay {
   position: absolute;
-  top: -10%;
-  left: 5%;
-  width: 90%; /* 与视频等宽 */
-  height: 90%; /* 与视频等高 */
+  top: -50%; /* 放大后调整位置 */
+  left: -30%; /* 放大后调整位置 */
+  width: 160%; /* 放大 10% */
+  height: 130%; /* 放大 10% */
   pointer-events: none; /* 允许鼠标事件穿透 */
   opacity: 0.8; /* 轻微透明 */
 }

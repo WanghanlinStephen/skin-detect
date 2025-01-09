@@ -1,8 +1,3 @@
-body.homepage {
-  overflow: hidden; /* 禁止滚动 */
-  height: 100%; /* 确保填满视口 */
-}
-
 .Homepage {
   display: flex;
   flex-direction: column;

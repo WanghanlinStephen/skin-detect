@@ -74,82 +74,7 @@ function UploadImage() {
     }
   };
 
-  // 提交处理
-  // const handleSubmit = async () => {
-  //   console.log('Submitting data:', questionnaireData, image);
-  
-  //   const payload = {
-  //     age: questionnaireData.age,
-  //     skinType: questionnaireData.skinType,
-  //     makeupStyle: questionnaireData.makeupStyle,
-  //     focus: questionnaireData.focus,
-  //     gender: questionnaireData.gender,
-  //     name: questionnaireData.name,
-  //     image: image,
-  //   };
-  
-  //   navigate('/loading');
-  
-  //   try {
-  //     const response = await new Promise((resolve) => {
-  //       setTimeout(() => {
-  //         resolve({
-  //           success: true,
-  //           data: [
-  //             {
-  //               name: 'Wrinkles',
-  //               image: 'https://www.canfieldsci.com/common/images/imaging-systems/visia-complexion-analysis/card-uv-spots.jpg',
-  //               advice: 'Use anti-aging cream to reduce wrinkles.',
-  //               product: [
-  //                 {
-  //                   image: 'https://www.skinceuticals.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-skinceuticals-master-catalog/default/dwa974d950/Products/S17/C-E-Ferulic-SkinCeuticals_Award_Seals.jpg?sw=930&sfrm=jpg&q=70',
-  //                   description: 'C E Ferulic® with 15% L-Ascorbic Acid',
-  //                 },
-  //                 {
-  //                   image: 'https://www.skinceuticals.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-skinceuticals-master-catalog/default/dwa974d950/Products/S17/C-E-Ferulic-SkinCeuticals_Award_Seals.jpg?sw=930&sfrm=jpg&q=70',
-  //                   description: 'Triple Lipid Restore 2:4:2',
-  //                 },
-  //               ],
-  //             },
-  //             {
-  //               name: 'Fine Lines',
-  //               image: 'https://www.canfieldsci.com/common/images/imaging-systems/visia-complexion-analysis/card-brown-spots.jpg',
-  //               advice: 'Moisturize daily to smooth fine lines.',
-  //               product: [
-  //                 {
-  //                   image: 'https://www.skinceuticals.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-skinceuticals-master-catalog/default/dwa974d950/Products/S17/C-E-Ferulic-SkinCeuticals_Award_Seals.jpg?sw=930&sfrm=jpg&q=70',
-  //                   description: 'Retinol 0.3',
-  //                 },
-  //               ],
-  //             },
-  //             {
-  //               name: 'Deep Wrinkles',
-  //               image: 'https://www.canfieldsci.com/common/images/imaging-systems/visia-complexion-analysis/card-red-areas.jpg',
-  //               advice: 'Consider professional treatments for deep wrinkles.',
-  //               product: [
-  //                 {
-  //                   image: 'https://www.skinceuticals.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-acd-skinceuticals-master-catalog/default/dwa974d950/Products/S17/C-E-Ferulic-SkinCeuticals_Award_Seals.jpg?sw=930&sfrm=jpg&q=70',
-  //                   description: 'Retinol 0.3',
-  //                 },
-  //               ],
-  //             },
-  //           ],
-  //         });
-  //       }, 3000);
-  //     });
-  
-  //     if (response.success) {
-  //       console.log('API Response:', response.data);
-  //       navigate('/result', { state: { analyses: response.data } });
-  //     } else {
-  //       console.error('API Error:', response.error || 'Unknown error');
-  //       navigate('/error');
-  //     }
-  //   } catch (error) {
-  //     console.error('Submission failed:', error);
-  //     navigate('/error');
-  //   }
-  // };
+
 
   const convertImageToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -203,8 +128,6 @@ function UploadImage() {
   };
 
   const handleSubmit = async () => {
-    // console.log('Submitting data:', questionnaireData, image);
-  
     if (!image) {
       console.error('No image provided!');
       alert('Please upload or capture an image.');
@@ -318,7 +241,7 @@ function UploadImage() {
             
             {/* 矢量图覆盖 */}
             <img
-              src="https://skin-doctor-frontend.s3.us-east-2.amazonaws.com/images/head.svg"
+              src="https://skin-doctor-frontend.s3.us-east-2.amazonaws.com/images/untitled.svg"
               alt="Head Overlay"
               className="head-overlay"
             />
