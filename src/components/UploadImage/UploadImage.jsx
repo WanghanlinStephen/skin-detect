@@ -169,7 +169,7 @@ function UploadImage() {
     const timeoutId = setTimeout(() => controller.abort(), 100000);
   
     try {
-      const response = await fetch('http://api.skinscan.life:8000/api/face_ai/', {
+      const response = await fetch('https://api.skinscan.life:8000/api/face_ai/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
