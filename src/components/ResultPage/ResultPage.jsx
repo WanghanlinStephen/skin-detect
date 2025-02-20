@@ -61,6 +61,7 @@ function ResultPage() {
 
         {/* Advice Section */}
         <div className="advice-section">
+          {/* <h2>Score:{selectedData.Score || 'No score available.'}</h2> */}
           <h2>Advice</h2>
           <p>{selectedData.Comment || 'No advice available.'}</p>
         </div>
@@ -108,7 +109,7 @@ function ResultPage() {
           </button>
 
           <div className="product-slider">
-            {products.slice(1).slice(scrollIndex, scrollIndex + 3).map((product, index) => (
+            {products.slice(1).slice(scrollIndex, scrollIndex + 2).map((product, index) => (
               <div
                 key={index}
                 className="product-box"

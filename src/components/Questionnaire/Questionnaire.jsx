@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import './Questionnaire.css';
 
 function Questionnaire() {
-  const [age, setAge] = useState(30);
-  const [skinType, setSkinType] = useState('Combination');
-  const [makeupStyle, setMakeupStyle] = useState('Natural');
+  const [age, setAge] = useState('');
+  const [skinType, setSkinType] = useState('');
+  const [makeupStyle, setMakeupStyle] = useState('');
   const [focus, setFocus] = useState('');
-  const [gender, setGender] = useState('Male');
+  const [gender, setGender] = useState('');
   const [name, setName] = useState('');
   const navigate = useNavigate();
 
@@ -39,6 +39,7 @@ function Questionnaire() {
           <input
             type="number"
             className="age-input"
+            placeholder="Enter your age"
             value={age}
             onChange={(e) => setAge(e.target.value)}
           />

@@ -114,8 +114,15 @@
 }
 
 .product-box {
-  flex: 0 0 calc(33.33% - 10px);
-  background: transparent; /* 移除背景颜色 */
+  flex: 0 0 auto;
+  width: 200px; 
+  /* 新增的关键设置 */
+  min-height: 300px;  /* 根据需要调节合适的高度 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   padding: 10px;
@@ -123,16 +130,38 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: relative; /* 需要相对定位以支持 z-index */
-  z-index: 1; /* 默认 z-index */
+  position: relative;
+  z-index: 1;
+
+
+  /* flex: 0 0 calc(33.33% - 10px);
+  background: transparent; 
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;  */
 }
 
 .product-box:hover {
-  transform: scale(1.05); /* 放大效果 */
+  transform: scale(1.02); /* 放大效果 */
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* 增强阴影 */
   z-index: 10; /* 确保放大的元素位于最上层 */
 }
-
+ 
+@media (max-width: 768px) {
+  .product-box {
+    /* 例如：宽高缩成原来的 0.75 倍，这里举例 150x225 */
+    width: 130px;
+    min-height: 200px;
+    /* 也可以用 transform: scale(0.75) + transform-origin，
+       不过那容易影响布局，需要更小心处理父容器的高度。 */
+  }
+}
 .product-image {
   width: 100%;
   height: 80px; /* 调整产品图片尺寸 */
