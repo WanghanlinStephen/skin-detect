@@ -49,7 +49,7 @@ function ResultPage() {
         </div>
         <div className="button-group">
           {Object.keys(skinScores)
-            .filter((key) => key !== 'Texture')
+            .filter((key) => ["Redness", "Spots", "Wrinkles"].includes(key))
             .map((key) => (
               <button
                 key={key}
@@ -60,6 +60,7 @@ function ResultPage() {
               </button>
             ))}
         </div>
+
 
         {/* Advice Section */}
         <div className="advice-section">

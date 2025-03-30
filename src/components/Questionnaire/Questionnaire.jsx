@@ -12,6 +12,10 @@ function Questionnaire() {
   const navigate = useNavigate();
 
   const handleNext = () => {
+    if (!name || !age || !skinType || !makeupStyle || !focus || !gender) {
+      alert('Please fill in all the fields before continuing.');
+      return;
+    }  
     console.log('Age:', age, 'Skin Type:', skinType, 'Makeup Style:', makeupStyle, 'Focus:', focus, 'Gender:', gender, 'Name:', name);
     // Pass data through navigation state
     navigate('/upload', { state: { age, skinType, makeupStyle, focus, gender, name } });
