@@ -79,10 +79,10 @@ function UploadImage() {
   const convertImageToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-  
+
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
-  
+
       reader.readAsDataURL(file);
     });
   };
@@ -90,27 +90,27 @@ function UploadImage() {
   const stripAlphaChannel = (base64Image) => {
     return new Promise((resolve, reject) => {
       const img = new Image();
-  
+
       // 确保 Base64 数据格式正确
       console.log('Input Base64 Image:', base64Image);
       if (!base64Image.startsWith('data:image/')) {
         base64Image = `data:image/jpeg;base64,${base64Image}`;
         // console.log('Modified Base64 Image:', base64Image);
       }
-  
+
       img.src = base64Image;
-  
+
       img.onload = () => {
         try {
           console.log('Image loaded successfully:', img.width, img.height);
-  
+
           const canvas = document.createElement('canvas');
           canvas.width = img.width;
           canvas.height = img.height;
           const ctx = canvas.getContext('2d');
-  
+
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  
+
           const newBase64 = canvas.toDataURL('image/jpeg');
           // console.log('Processed Base64 Image:', newBase64);
           resolve(newBase64);
@@ -119,7 +119,7 @@ function UploadImage() {
           reject(error);
         }
       };
-  
+
       img.onerror = (error) => {
         console.error('Image failed to load:', error);
         reject(new Error('Image failed to load'));
@@ -133,7 +133,7 @@ function UploadImage() {
       alert('Please upload or capture an image.');
       return;
     }
-  
+
     // 去掉 Alpha 通道并确保 Base64 格式正确
     let processedImage = image; // 新变量用于保存处理后的数据
 
@@ -148,7 +148,7 @@ function UploadImage() {
       alert('Failed to process image. Please try again.');
       return;
     }
-  
+
     const payload = {
       user_id: 1, // Optional
       name: questionnaireData.name,
@@ -162,12 +162,12 @@ function UploadImage() {
     };
 
     console.log(JSON.stringify(payload))
-  
+
     navigate('/loading');
-  
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 100000);
-  
+
     try {
       const response = await fetch('https://api.skinscan.life/api/face_ai/', {
         method: 'POST',
@@ -177,17 +177,18 @@ function UploadImage() {
         body: JSON.stringify(payload),
         signal: controller.signal,
       });
-  
+
       clearTimeout(timeoutId);
       console.log(response)
-  
+
       if (!response.ok) {
         console.error('API Error: Non-200 response status', response.status);
         console.error('error details:', response.data)
-        navigate('/error')
+        const errorInfo = `API Error: ${response.status} ${response.statusText}`;
+        navigate('/error', { state: { errorInfo } });
         return;
       }
-  
+
       const responseData = await response.json();
       console.log('API Response:', responseData);
       navigate('/result', { state: { analyses: responseData } });
@@ -198,11 +199,11 @@ function UploadImage() {
       } else {
         console.error('Submission failed:', error.message || 'Unknown error');
       }
-      navigate('/error');
+      navigate('/error', { state: { errorInfo: error } });
     }
   };
-  
-  
+
+
 
   // 组件卸载时释放摄像头流
   useEffect(() => {
@@ -238,7 +239,7 @@ function UploadImage() {
         {isCameraActive && (
           <div className="camera-preview">
             <video ref={videoRef} className="video" autoPlay playsInline />
-            
+
             {/* 矢量图覆盖 */}
             <img
               src="https://skin-doctor-frontend.s3.us-east-2.amazonaws.com/images/untitled.svg"
