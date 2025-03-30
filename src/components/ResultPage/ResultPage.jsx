@@ -48,15 +48,17 @@ function ResultPage() {
           />
         </div>
         <div className="button-group">
-          {Object.keys(skinScores).map((key) => (
-            <button
-              key={key}
-              className={`circle-button ${key === selectedAnalysis ? 'selected-button' : ''}`}
-              onClick={() => setSelectedAnalysis(key)}
-            >
-              {key}
-            </button>
-          ))}
+          {Object.keys(skinScores)
+            .filter((key) => key !== 'Texture')
+            .map((key) => (
+              <button
+                key={key}
+                className={`circle-button ${key === selectedAnalysis ? 'selected-button' : ''}`}
+                onClick={() => setSelectedAnalysis(key)}
+              >
+                {key}
+              </button>
+            ))}
         </div>
 
         {/* Advice Section */}
@@ -88,7 +90,7 @@ function ResultPage() {
                 <p className="product-title">{featuredProduct.title}</p>
                 <p className="product-price">${featuredProduct.var_price}</p>
                 <p className="product-description">
-                  Hydrating and anti-aging formula, perfect for reducing wrinkles and fine lines. 
+                  Hydrating and anti-aging formula, perfect for reducing wrinkles and fine lines.
                 </p>
               </div>
             </div>

@@ -95,7 +95,7 @@ function UploadImage() {
       console.log('Input Base64 Image:', base64Image);
       if (!base64Image.startsWith('data:image/')) {
         base64Image = `data:image/jpeg;base64,${base64Image}`;
-        console.log('Modified Base64 Image:', base64Image);
+        // console.log('Modified Base64 Image:', base64Image);
       }
   
       img.src = base64Image;
@@ -112,7 +112,7 @@ function UploadImage() {
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   
           const newBase64 = canvas.toDataURL('image/jpeg');
-          console.log('Processed Base64 Image:', newBase64);
+          // console.log('Processed Base64 Image:', newBase64);
           resolve(newBase64);
         } catch (error) {
           console.error('Error processing canvas:', error);
@@ -142,7 +142,7 @@ function UploadImage() {
         processedImage = processedImage.split(',')[1]; // 去掉前缀
       }
       processedImage = await stripAlphaChannel(processedImage); // 去掉透明度，转换为 RGB
-      console.log('Processed image:', processedImage);
+      // console.log('Processed image:', processedImage);
     } catch (error) {
       console.error('Image processing error:', error);
       alert('Failed to process image. Please try again.');
