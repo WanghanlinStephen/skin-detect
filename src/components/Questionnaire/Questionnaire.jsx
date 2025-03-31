@@ -27,16 +27,33 @@ function Questionnaire() {
       <p className="subtitle">Tell us more about your preferences</p>
 
       <div className="container">
-        <div className="form-section">
-          <label className="form-label">Your Name</label>
+        {/* <div className="form-section">
+          <label className="form-label">Your First Name</label>
           <input
             type="text"
             className="name-input"
-            placeholder="Enter your name"
+            placeholder="Enter your first name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+        </div> */}
+
+        <div className="form-section">
+          <label className="form-label">Your First Name</label>
+          <input
+            type="text"
+            className="name-input"
+            placeholder="Enter your first name"
+            value={name}
+            onChange={(e) => {
+              const inputValue = e.target.value;
+              if (!/\s/.test(inputValue)) {
+                setName(inputValue);
+              }
+            }}
+          />
         </div>
+
 
         <div className="form-section">
           <label className="form-label">Your Age</label>
